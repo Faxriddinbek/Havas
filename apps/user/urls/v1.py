@@ -1,11 +1,9 @@
 from django.urls import path
 
-from apps.user.views.user_create import UserRegisterAPIView
-from apps.user.views.user_list import CarListAPIView
+from apps.user.views.device import DeviceRegisterCreateAPIView
 
 app_name = 'users'
 
 urlpatterns = [
-    path('', CarListAPIView.as_view(), name='list'),
-    # path('<int:car_id>/rent/', CarRentCreateAPIView.as_view(), name='rent'),
+    path('devises/', DeviceRegisterCreateAPIView.as_view(), name='device-register'),
 ]
