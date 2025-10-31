@@ -26,5 +26,3 @@ DB_PORT = env('DB_PORT', default='5432')
 # telegram bot
 TELEGRAM_BOT_TOKEN = '7933839705:AAFHYePhouFXF4Or4J_FM-KFGHBTzZ_dB3g'
 TELEGRAM_CHANNEL_ID = '-1002309236825'
-#devise_id
-#devise_model, language, devise_vesion, jwt_token, user   jpt(i just wonna create jwt )
