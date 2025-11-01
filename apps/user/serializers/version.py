@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from apps.shared.exceptions.custom_exceptions import CustomException
-from apps.user.model.devise_model import AppVersion
+from apps.user.models import AppVersion
 
 
 class AppVersionSerializer(serializers.ModelSerializer):

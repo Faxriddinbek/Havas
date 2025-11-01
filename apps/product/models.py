@@ -1,11 +1,14 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from apps.shared.models import BaseModel
+
 
 class MeasurementType(models.TextChoices):
     GR = "GR", "Gram"
     PC = "PC", "Peace"
     L = "L", "Litre"
+
 
 class ProductCategory(models.TextChoices):
     BREAKFAST = "BREAKFAST", "Breakfast"
@@ -13,8 +16,12 @@ class ProductCategory(models.TextChoices):
     DINNER = "DINNER", "Dinner"
     ALL = "ALL", "All"
 
+
 class Product(BaseModel):
-    image = models.ImageField(upload_to='products/')
+    media_files = GenericRelation(
+        'shared.Media',
+        related_query_name='products'
+    )
     title = models.CharField(max_length=255, db_index=True)
     description = models.TextField()
 
@@ -23,15 +30,12 @@ class Product(BaseModel):
     real_price = models.DecimalField(max_digits=30, decimal_places=2)
 
     category = models.CharField(
-        choices=ProductCategory,
-        default=ProductCategory.ALL,
+        choices=ProductCategory, default=ProductCategory.ALL,
         db_index=True
     )
     measurement_type = models.CharField(
-        choices=MeasurementType,
-        default=MeasurementType.GR
+        choices=MeasurementType, default=MeasurementType.GR
     )
-
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

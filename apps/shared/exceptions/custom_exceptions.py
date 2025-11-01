@@ -8,10 +8,3 @@ class CustomException(Exception):
     def __init__(self, message_key: str, context: dict = None):
         self.message_key = message_key
         self.context = context or {}
-
-    def get_message(self):
-        # Agar message_key ma’lum bo‘lsa, unga mos xabar qaytaradi
-        messages = {
-            "device_already_exists": "Bu device allaqachon mavjud!",
-        }
-        return messages.get(self.message_key, "Noma’lum xatolik yuz berdi.")

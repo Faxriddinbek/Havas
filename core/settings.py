@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'apps.user',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -112,7 +113,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+LANGUAGES = (
+('en', 'English'),
+('uz', 'Uzbek')
+)
 
 TIME_ZONE = 'UTC'
 
@@ -148,7 +153,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
     'PAGE_SIZE': 20,
-    'EXCEPTION_HANDLER': 'apps.shared.exceptions.handler.custom_exception_handler',
+    # 'EXCEPTION_HANDLER': 'apps.shared.exceptions.handler.custom_exception_handler',
     'DEFAULT_PAGINATION_CLASS': 'apps.shared.utils.custom_pagination.CustomPageNumberPagination',
 }
 
