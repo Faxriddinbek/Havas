@@ -7,7 +7,7 @@ from rest_framework.test import APITestCase
 class TestProductCreate(APITestCase):
     def setUp(self):
         self.url = reverse_lazy('products:list-create')
-        image_path = "/Users/sanjarbek/Developer/NajotTalim/havas/media/products/image.jpg"
+        image_path = "C:/Users/user/PycharmProjects/media/products/uzumdan_rasim.jpg"
         with open(image_path, "rb") as img:
             image_file = SimpleUploadedFile("image.jpg", img.read(), content_type="image/jpeg")
 
@@ -26,21 +26,21 @@ class TestProductCreate(APITestCase):
         response = self.client.post(path=self.url, data=self.payload, format='multipart')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.json().get('data').get('title'), "Organic Honey")
-
-    def test_check_discount_calculation(self):
-        pass
-
-    def test_missing_required_fields(self):
-        pass
-
-    def test_duplication_fields(self):
-        pass
-
-    def test_invalid_payload(self):
-        pass
-
-    def test_category_type(self):
-        pass
-
-    def test_measurement_type(self):
-        pass
+    #
+    # def test_check_discount_calculation(self):
+    #     pass
+    #
+    # def test_missing_required_fields(self):
+    #     pass
+    #
+    # def test_duplication_fields(self):
+    #     pass
+    #
+    # def test_invalid_payload(self):
+    #     pass
+    #
+    # def test_category_type(self):
+    #     pass
+    #
+    # def test_measurement_type(self):
+    #     pass
