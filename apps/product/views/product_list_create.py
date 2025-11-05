@@ -27,7 +27,6 @@ class ProductListCreateApiView(ListCreateAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset().order_by('-id'))
-        print(request.lang, request.device_type, "********")
         page = self.paginate_queryset(queryset)# pagination_class asosida menchta queriset kelishini hal qiladi
         if page is not None:# agar page bo'sh bo'lmasa ishlaydi
             serializer = self.get_serializer(page, many=True, context={'request': request})#

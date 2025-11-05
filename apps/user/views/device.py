@@ -1,6 +1,7 @@
 from typing import Any
 
 from rest_framework import generics, permissions, status
+from rest_framework.permissions import AllowAny
 
 from apps.shared.permissions.mobile import IsMobileOrWebUser
 from apps.shared.utils.custom_response import CustomResponse
