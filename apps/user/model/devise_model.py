@@ -15,7 +15,7 @@ class DeviceTheme(models.TextChoices): #devise rejimi
     LIGHT = "LIGHT", "Light"
 
 
-class DeviceType(models.TextChoices):
+class DeviceType(models.TextChoices):# Sevise sistemasi
     IOS = "IOS", "iOS"
     ANDROID = "ANDROID", "Android"
     ALL = "ALL", "ALL"

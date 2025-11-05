@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-from datetime import timedelta
 from core import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -58,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'apps.shared.middlewares.update_request.AddCustomHeaderMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -153,7 +153,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
     'PAGE_SIZE': 20,
-    # 'EXCEPTION_HANDLER': 'apps.shared.exceptions.handler.custom_exception_handler',
+    'EXCEPTION_HANDLER': 'apps.shared.exceptions.handler.custom_exception_handler',
     'DEFAULT_PAGINATION_CLASS': 'apps.shared.utils.custom_pagination.CustomPageNumberPagination',
 }
 

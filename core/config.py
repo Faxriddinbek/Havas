@@ -10,6 +10,14 @@ env = environ.Env()
 
 # Try to find .env file in multiple possible locations
 env_path = os.path.join(BASE_DIR, '.env')
+if not os.path.exists(env_path):
+    env_path = os.path.join(BASE_DIR.parent, '.env')
+
+# Read the .env file from the found location
+if os.path.exists(env_path):
+    environ.Env.read_env(env_path)
+else:
+    print("⚠️  Warning: .env file not found!")
 
 # DJANGO CORE SETTINGS
 SECRET_KEY = env('SECRET_KEY', default='unsafe-secret-key')

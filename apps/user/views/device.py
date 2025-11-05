@@ -2,7 +2,7 @@ from typing import Any
 
 from rest_framework import generics, permissions, status
 
-from apps.shared.permissions.mobile import IsMobileUser
+from apps.shared.permissions.mobile import IsMobileOrWebUser
 from apps.shared.utils.custom_response import CustomResponse
 from apps.user.model.devise_model import Device
 from apps.user.serializers.device import DeviceRegisterSerializer
@@ -16,17 +16,17 @@ class DeviceRegisterCreateAPIView(generics.CreateAPIView):
     serializer_class = DeviceRegisterSerializer
     permission_classes = [permissions.AllowAny]
 
-    def __init__(self, **kwargs: Any): # yaratilgan qurilma obyektini saqlash uchun
+    def __init__(self, **kwargs: Any):
         super().__init__(**kwargs)
         self.device = None
 
-    def perform_create(self, serializer): # yangi obyekt saqlash uchun ishlatiladi
-        device = serializer.save() # serializer.save() bu bazaga saqlaydi
-        self.device = device # o‘sha qurilma obyektini self.device da saqlab qo‘yadi.
+    def perform_create(self, serializer):
+        device = serializer.save()
+        self.device = device
 
     def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs) # bu CreateAPIView ni create metodini chaqiradi
-        response.data['device_token'] = str(self.device.device_token)# respondi datasiga device_token generatsiya qilib saqlaydi
+        response = super().create(request, *args, **kwargs)
+        response.data['device_token'] = str(self.device.device_token)
         return CustomResponse.success(
             message_key="SUCCESS_MESSAGE",
             data=response.data,
@@ -37,7 +37,7 @@ class DeviceRegisterCreateAPIView(generics.CreateAPIView):
 class DeviceListApiView(generics.ListAPIView):
     queryset = Device.objects.all()
     serializer_class = DeviceRegisterSerializer
-    permission_classes = [IsMobileUser]
+    permission_classes = [IsMobileOrWebUser]
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
