@@ -7,7 +7,14 @@ class AddCustomHeaderMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        device_token = request.headers.get('Token', None)
+        # ⚙️ Standart qiymatlarni oldindan berib qo'yamiz
+        request.device_type = "UNKNOWN"
+        request.lang = "uz"
+
+        device_token = request.headers.get('Token')
+        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+
+        # ⚙️ MOBILE dan kelgan bo‘lsa
         if device_token:
             request.device_type = "MOBILE"
             try:
@@ -16,12 +23,10 @@ class AddCustomHeaderMiddleware:
             except Device.DoesNotExist:
                 raise CustomException(message_key="NOT_FOUND")
 
-        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
-        if auth_header:
+        # ⚙️ WEB dan kelgan bo‘lsa
+        elif auth_header:
             request.device_type = "WEB"
             request.lang = request.headers.get('Accept-Language', 'uz')
 
-        # Continue processing the request
         response = self.get_response(request)
-
         return response

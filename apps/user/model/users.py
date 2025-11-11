@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel): # AbstractBaseUser me
     is_email_verified = models.BooleanField(default=False) #email verifikatsiyadanligini tekshiradi
     is_phone_verified = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)# bu admin ekanligini tekshiradi
     is_superuser = models.BooleanField(default=False)
 
     objects = CustomUserManager()
@@ -84,7 +84,7 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel): # AbstractBaseUser me
         return self.email
 
     def get_tokens(self, access_lifetime=None, refresh_lifetime=None): # user yaratgandan keyin .get_tokens deb olsa bo'ladi
-        """Generate JWT tokens for the user with optional custom expiration"""
+        """user yaratgandan keyin .get_tokens deb olsa bo'ladi"""
         refresh = RefreshToken.for_user(self)
 
         # Set custom lifetimes if provided

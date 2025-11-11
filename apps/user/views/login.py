@@ -10,7 +10,7 @@ from apps.user.serializers.user import LoginSerializer, UserResponseSerializer
 
 class LoginView(APIView):
     """
-    Login view that returns JWT tokens
+    Login views that returns JWT tokens
     """
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer

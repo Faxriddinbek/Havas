@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'apps.product',
     'apps.story',
     'apps.resips',
-    'apps.cpisc',
+    'apps.list',
 ]
 
 MIDDLEWARE = [
@@ -196,3 +196,5 @@ SIMPLE_JWT = {
     # Token payload customization
     'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
 }
+
+TELEGRAM_BOT_TOKEN = config.TELEGRAM_BOT_TOKEN

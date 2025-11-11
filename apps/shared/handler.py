@@ -74,7 +74,7 @@ class DRFExceptionHandler:
 
         Args:
             exc: The exception instance
-            context: Exception context containing request and view information
+            context: Exception context containing request and views information
 
         Returns:
             Custom error response

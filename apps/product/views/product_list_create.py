@@ -12,15 +12,17 @@ from apps.shared.utils.custom_response import CustomResponse
 class ProductListCreateApiView(ListCreateAPIView):
     serializer_class = ProductCreateSerializer
     pagination_class = CustomPageNumberPagination
-    permission_classes = [IsMobileOrWebUser]
+    permission_classes = [IsMobileOrWebUser]# bu mobileda token borlarni va webda afentication larni o'tkazadi
 
-    def get_queryset(self):
+    def get_queryset(self):# productlar royhartini oladi
         return Product.objects.filter(is_active=True)
 
     def get_serializer_class(self):
+        device_type = getattr(self.request, "device_type", "UNKNOWN")
+
         if self.request.method == "POST":
             return ProductCreateSerializer
-        elif self.request.method == "GET" and self.request.device_type == "WEB":
+        elif self.request.method == "GET" and device_type == "WEB":
             return ProductListSerializer
         else:
             return ProductDetailSerializer
