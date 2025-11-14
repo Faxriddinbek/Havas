@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name ezma.uz www.ezma.uz 159.89.101.198;
+    server_name faxriddinbek.uz 64.226.100.202;
 
     location /static/ {
         alias /vol/web/static/;
