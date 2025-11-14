@@ -32,7 +32,7 @@ DB_HOST = env('DB_HOST', default='db')
 DB_PORT = env('DB_PORT', default='5432')
 
 MEDIA_ROOT = env('MEDIA_ROOT', default='/vol/web/media/')
-STATIC_ROOT = env('STATIC_ROOT', default='/vol/web/media/')
+STATIC_ROOT = env('STATIC_ROOT', default='/vol/web/static/')
 
 # telegram bot
 TELEGRAM_BOT_TOKEN = env('TELEGRAM_BOT_TOKEN', default='7933839705:AAFHYePhouFXF4Or4J_FM-KFGHBTzZ_dB3g')
